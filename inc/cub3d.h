@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 16:16:53 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 14:49:06 by ynieto-s         ###   ########.fr       */
+/*   Created: 2026/05/31 15:54:35 by ynieto-s          #+#    #+#             */
+/*   Updated: 2026/05/31 16:20:09 by ynieto-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
+#ifndef FOV
+# define FOV 0.66
+#endif
+
 typedef struct s_rgb
 {
 	int	r;
@@ -42,7 +46,7 @@ typedef struct s_textures
 	char	*west;
 }				t_textures;
 
-typedef struct s_map
+typedef struct s_maps
 {
 	char	**grid;
 	size_t	rows;
@@ -106,7 +110,10 @@ int		load_texture(char *id, char *path, t_scene *scene);
 
 int		create_rgb(t_rgb c);
 t_rgb	create_rgbt(int col);
+t_rgb	*get_color(char type, t_scene *scene, int **flag);
+int		is_color_line(const char *line);
 
 void	init_player_dir(t_player *player);
+void	normalize_player_cells(t_map *map);
 
 #endif

@@ -6,13 +6,11 @@
 /*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 13:48:44 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 14:42:56 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/05/31 16:19:02 by ynieto-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-# define FOV 0.66 
 
 static void	set_north(t_player *p)
 {
@@ -48,15 +46,15 @@ static void	set_west(t_player *p)
 
 void	init_player_dir(t_player *player)
 {
-	if (!player || !player->spawn_ori)
+	if (!player || !player-> spawn_ori)
 		return ;
-	if	(player->spawn_ori == 'N')
+	if (player-> spawn_ori == 'N')
 		set_north(player);
-	else if (player->spawn_ori == 'S')
+	else if (player-> spawn_ori == 'S')
 		set_south(player);
-	else if (player->spawn_ori == 'E')
+	else if (player-> spawn_ori == 'E')
 		set_east(player);
-	else if	(player->spawn_ori == 'W')
+	else if (player-> spawn_ori == 'W')
 		set_west(player);
 }
 /*FOV del raycaster es el estándar. El plano de cámara es perpendicular 

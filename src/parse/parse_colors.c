@@ -6,7 +6,7 @@
 /*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 13:41:54 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 13:41:55 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/05/31 16:02:29 by ynieto-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,14 @@ static int	parse_rgb_triplet(const char *str, t_rgb *rgb)
 int	parse_color_line(char *line, t_scene *scene)
 {
 	char	**sp;
-	char	type;
 	t_rgb	*dst;
 	int		*flag;
 
 	sp = ft_split(line, ' ');
 	if (!sp || !sp[0] || !sp[1] || sp[2] || sp[0][1] != '\0')
 		return (free_split(sp), -1);
-	type = sp[0][0];
-	if (type == 'F')
-	{
-		dst = &scene->floor;
-		flag = &scene->has_floor;
-	}
-	else if (type == 'C')
-	{
-		dst = &scene->ceil;
-		flag = &scene->has_ceil;
-	}
-	else
-		return (free_split(sp), -1);
-	if (*flag)
-		return (free_split(sp), -1);
-	if (parse_rgb_triplet(sp[1], dst) != 0)
+	dst = get_color(sp[0][0], scene, &flag);
+	if (!dst || *flag || parse_rgb_triplet(sp[1], dst))
 		return (free_split(sp), -1);
 	*flag = 1;
 	free_split(sp);

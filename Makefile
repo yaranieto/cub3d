@@ -6,7 +6,7 @@
 #    By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/31 14:50:19 by ynieto-s          #+#    #+#              #
-#    Updated: 2026/05/31 14:50:24 by ynieto-s         ###   ########.fr        #
+#    Updated: 2026/05/31 16:18:14 by ynieto-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC = \
 	parse/parse.c \
 	parse/parse_line.c \
 	parse/parse_colors.c \
+	player/player_init.c \
 	map/map.c \
 	map/map_load.c \
 	map/map_validate.c \

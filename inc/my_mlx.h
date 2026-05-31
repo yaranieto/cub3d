@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   my_mlx.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/31 15:56:08 by ynieto-s          #+#    #+#             */
+/*   Updated: 2026/05/31 15:59:29 by ynieto-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef MY_MLX_H
+/* #ifndef MY_MLX_H
 # define MY_MLX_H
 
 #include "../libft/libft.h"
@@ -16,51 +27,50 @@ typedef struct s_img
 	int		bpp;        // Bits por pixel (calidad / formato del color)
 	int		line_len;   // Número de bytes por línea de la imagen
 	int		endian;     // Orden de bytes (little/big endian)
-}	t_img;
+}	t_img;*/
 
 /*
 ** Pinta un píxel en una posición concreta de la imagen
-*/
+
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*
 ** Obtiene el color de un píxel en una posición concreta
-*/
 unsigned int	my_mlx_pixel_get(t_img *img, int x, int y);
 
 /*
 ** Rellena un área rectangular con un color sólido
-*/
-void			my_mlx_area_fill(t_img *img, int x, int y, int w, int h, int color);
+
+void			my_mlx_area_fill(t_img *img, int x, int y, int w, int h, 
+int color);
 
 /*
 ** Dibuja una línea vertical en la pantalla
 ** (útil para raycasting en cub3D)
-*/
-void			my_mlx_draw_vline(t_img *img, int x, int y_start, int y_end, int color);
+
+void			my_mlx_draw_vline(t_img *img, int x, int y_start, int y_end, 
+int color);
 
 /*
 ** Carga una imagen XPM desde un archivo y la convierte en t_img
-*/
+
 t_img			*my_mlx_load_xpm(void *mlx, char *path);
 
 /*
 ** Copia una imagen dentro de otra imagen (blit)
 ** Ignora el color "transparent_color"
-*/
 void			my_mlx_blit_img(int pos[2], t_img *src, t_img *dst, 
 	int transparent_color);
 
 /*
 ** Inicializa una estructura de imagen vacía
-*/
 void			my_mlx_init_img(t_img *img);
 
 /*
 ** Libera una imagen de memoria
-*/
+
 void			my_mlx_destroy_img(void *mlx, t_img *img);
-#endif
+*/
 
 /*
 ** endian indica el orden en el que se almacenan los bytes en memoria.

@@ -6,7 +6,7 @@
 /*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 13:41:51 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 13:41:52 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/05/31 16:08:32 by ynieto-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@ static int	match_id(const char *line, const char *id)
 {
 	return (line[0] == id[0] && line[1] == id[1]
 		&& (line[2] == ' ' || line[2] == '\0'));
-}
-
-static int	is_texture_line(const char *line)
-{
-	return (match_id(line, "NO") || match_id(line, "SO")
-		|| match_id(line, "WE") || match_id(line, "EA"));
-}
-
-static int	is_color_line(const char *line)
-{
-	return ((line[0] == 'F' || line[0] == 'C')
-		&& (line[1] == ' ' || line[1] == '\0'));
 }
 
 static int	looks_like_map(const char *line)

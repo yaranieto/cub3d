@@ -6,7 +6,7 @@
 /*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 14:58:45 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 14:59:11 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/05/31 16:12:18 by ynieto-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,6 @@ static int	map_closed(t_scene *scene)
 	r = (size_t)scene->player.pos_y;
 	c = (size_t)scene->player.pos_x;
 	return (flood(&scene->map, r, c));
-}
-
-static void	normalize_player_cells(t_map *map)
-{
-	size_t	r;
-	size_t	c;
-
-	r = 0;
-	while (r < map->rows)
-	{
-		c = 0;
-		while (c < map->cols)
-		{
-			if (map->grid[r][c] == 'N' || map->grid[r][c] == 'S'
-				|| map->grid[r][c] == 'E' || map->grid[r][c] == 'W')
-				map->grid[r][c] = '0';
-			c++;
-		}
-		r++;
-	}
 }
 
 int	validate_scene(t_scene *scene)
