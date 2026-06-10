@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 13:41:51 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 16:08:32 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/06/10 12:29:30 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ static int	match_id(const char *line, const char *id)
 {
 	return (line[0] == id[0] && line[1] == id[1]
 		&& (line[2] == ' ' || line[2] == '\0'));
+}
+
+static int	is_texture_line(const char *line)
+{
+	return (match_id(line, "NO") || match_id(line, "SO")
+		|| match_id(line, "WE") || match_id(line, "EA"));
 }
 
 static int	looks_like_map(const char *line)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 16:00:48 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 16:00:49 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/06/10 12:46:43 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int	main(int argc, char **argv)
 		scene_free(&scene);
 		return (print_err("failed to load .cub"), 1);
 	}
+	if (graph_init(&scene) != 0)
+	{
+		scene_free(&scene);
+		return (1);
+	}
+	mlx_loop(scene.graph.mlx);
 	scene_free(&scene);
 	return (0);
 }

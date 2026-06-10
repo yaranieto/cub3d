@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 15:54:35 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 16:20:09 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/06/10 11:29:51 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,7 @@ int		is_color_line(const char *line);
 
 void	init_player_dir(t_player *player);
 void	normalize_player_cells(t_map *map);
+
+int		graph_init(t_scene *scene);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+         #
+#    By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/31 14:50:19 by ynieto-s          #+#    #+#              #
-#    Updated: 2026/05/31 16:18:14 by ynieto-s         ###   ########.fr        #
+#    Updated: 2026/06/10 13:16:23 by jnovoa-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,16 @@ endif
 
 SRC = \
 	main.c \
+	my_mlx.c \
 	parse/parse.c \
 	parse/parse_line.c \
+	parse/parse_textures.c \
 	parse/parse_colors.c \
 	player/player_init.c \
 	map/map.c \
 	map/map_load.c \
 	map/map_validate.c \
+	map/map_floodfill.c \
 	utils/utils.c \
 	scene/scene.c \
 	scene/color.c
