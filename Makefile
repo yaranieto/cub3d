@@ -25,7 +25,7 @@ LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 GNL_DIR		= gnl
-GNL_SRC		= get_next_line.c get_next_line_utils.c
+GNL_SRC		= get_next_line.c
 GNL_OBJ		= $(GNL_SRC:%.c=$(OBJ_DIR)/gnl/%.o)
 
 MLX_DIR		= minilibx-linux
@@ -49,11 +49,13 @@ SRC = \
 	main.c \
 	parse/parse.c \
 	parse/parse_line.c \
+	parse/parse_textures.c \
 	parse/parse_colors.c \
 	player/player_init.c \
 	map/map.c \
 	map/map_load.c \
 	map/map_validate.c \
+	map/map_floodfill.c \
 	utils/utils.c \
 	scene/scene.c \
 	scene/color.c

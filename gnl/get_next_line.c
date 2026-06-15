@@ -12,6 +12,8 @@
 
 #include "get_next_line.h"
 
+static char	*g_stash;
+
 char	*ft_extract_line(char **stash)
 {
 	char	*line;
@@ -64,53 +66,31 @@ static int	read_and_fill_stash(int fd, char **stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
-	char		*result;
-	int			bytes;
+	char	*result;
+	int		bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!stash)
-		stash = ft_strdup("");
-	bytes = read_and_fill_stash(fd, &stash);
+	if (!g_stash)
+		g_stash = ft_strdup("");
+	bytes = read_and_fill_stash(fd, &g_stash);
 	if (bytes < 0)
 	{
-		free(stash);
-		stash = NULL;
+		free(g_stash);
+		g_stash = NULL;
 		return (NULL);
 	}
-	result = ft_extract_line(&stash);
-	if (!result && stash)
+	result = ft_extract_line(&g_stash);
+	if (!result && g_stash)
 	{
-		free(stash);
-		stash = NULL;
+		free(g_stash);
+		g_stash = NULL;
 	}
 	return (result);
 }
 
-/*cc -Wall -Wextra -Werror get_next_line.c get_next_line_utils.c*/
-/*#include <fcntl.h>    // open
-#include <unistd.h>   // close
-#include <stdio.h>    // printf
-#include <stdlib.h>   // free
-#include "get_next_line.h"
-
-int	main(void)
+void	gnl_clear_stash(void)
 {
-	int		fd;
-	char	*line;
-
-	fd = open("*.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error al abrir el archivo\n");
-		return (1);
-	}
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
-	}
-	close(fd);
-	return (0);
-}*/
+	free(g_stash);
+	g_stash = NULL;
+}

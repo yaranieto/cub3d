@@ -13,6 +13,15 @@
 #include "cub3d.h"
 #include "../../gnl/get_next_line.h"
 
+static int	finish_load(t_scene *scene)
+{
+	if (validate_scene(scene) != 0)
+		return (-1);
+	normalize_player_cells(&scene->map);
+	init_player_dir(&scene->player);
+	return (0);
+}
+
 int	load_cub_raw(const char *path, t_scene *scene)
 {
 	int		fd;
@@ -30,11 +39,13 @@ int	load_cub_raw(const char *path, t_scene *scene)
 		{
 			free(line);
 			close(fd);
+			gnl_clear_stash();
 			return (-1);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (validate_scene(scene));
+	gnl_clear_stash();
+	return (finish_load(scene));
 }

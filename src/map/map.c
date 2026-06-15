@@ -12,12 +12,6 @@
 
 #include "cub3d.h"
 
-static int	is_map_char(char c)
-{
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E'
-		|| c == 'W' || c == ' ');
-}
-
 static int	register_player(t_scene *scene, char c, size_t x, size_t y)
 {
 	if (c != 'N' && c != 'S' && c != 'E' && c != 'W')
@@ -38,7 +32,9 @@ static int	validate_row_chars(char *line, t_scene *scene, size_t y)
 	x = 0;
 	while (line[x])
 	{
-		if (!is_map_char(line[x]))
+		if (line[x] != '0' && line[x] != '1' && line[x] != 'N'
+			&& line[x] != 'S' && line[x] != 'E' && line[x] != 'W'
+			&& line[x] != ' ')
 			return (-1);
 		if (register_player(scene, line[x], x, y) != 0)
 			return (-1);
@@ -91,4 +87,27 @@ int	parse_map_line(char *line, t_scene *scene)
 	if (append_row(&scene->map, row) != 0)
 		return (free(row), -1);
 	return (0);
+}
+
+void	normalize_player_cells(t_map *map)
+{
+	size_t	y;
+	size_t	x;
+	char	c;
+
+	if (!map || !map->grid)
+		return ;
+	y = 0;
+	while (y < map->rows)
+	{
+		x = 0;
+		while (x < map->cols)
+		{
+			c = map->grid[y][x];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+				map->grid[y][x] = '0';
+			x++;
+		}
+		y++;
+	}
 }

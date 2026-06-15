@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaranietosantos <yaranietosantos@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 15:54:35 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 16:20:09 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/06/14 13:42:57 by yaranietosa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,23 @@
 # include "../libft/libft.h"
 # include "keycodes.h"
 # include "my_mlx.h"
-# include "../minilibx-linux/mlx.h"
+# ifndef OSX
+#  include "../minilibx-linux/mlx.h"
+# endif
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <stddef.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
 
-#ifndef FOV
-# define FOV 0.66
-#endif
+# ifndef FOV
+#  define FOV 0.66
+# endif
 
 typedef struct s_rgb
 {
@@ -101,6 +104,7 @@ void	free_split(char **arr);
 
 int		load_cub_raw(const char *path, t_scene *scene);
 int		validate_scene(t_scene *scene);
+int		validate_map_closed(t_scene *scene);
 
 int		parse_line(char *line, t_scene *scene);
 int		parse_texture_line(char *line, t_scene *scene);
@@ -112,6 +116,7 @@ int		create_rgb(t_rgb c);
 t_rgb	create_rgbt(int col);
 t_rgb	*get_color(char type, t_scene *scene, int **flag);
 int		is_color_line(const char *line);
+int		is_texture_line(const char *line);
 
 void	init_player_dir(t_player *player);
 void	normalize_player_cells(t_map *map);
