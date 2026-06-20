@@ -22,30 +22,42 @@ static int	finish_load(t_scene *scene)
 	return (0);
 }
 
+static int	parse_cub_fd(int fd, t_scene *scene, char **stash)
+{
+	char	*line;
+
+	line = get_next_line(fd, stash);
+	while (line)
+	{
+		if (parse_line(line, scene) != 0)
+			return (free(line), -1);
+		free(line);
+		line = get_next_line(fd, stash);
+	}
+	return (0);
+}
+
+static int	load_fail(int fd, char **stash)
+{
+	close(fd);
+	gnl_clear_stash(stash);
+	return (-1);
+}
+
 int	load_cub_raw(const char *path, t_scene *scene)
 {
 	int		fd;
-	char	*line;
+	char	*stash;
 
 	if (!path || !is_cub_extension(path))
 		return (-1);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (parse_line(line, scene) != 0)
-		{
-			free(line);
-			close(fd);
-			gnl_clear_stash();
-			return (-1);
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
+	stash = NULL;
+	if (parse_cub_fd(fd, scene, &stash) != 0)
+		return (load_fail(fd, &stash));
 	close(fd);
-	gnl_clear_stash();
+	gnl_clear_stash(&stash);
 	return (finish_load(scene));
 }

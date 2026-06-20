@@ -12,8 +12,6 @@
 
 #include "get_next_line.h"
 
-static char	*g_stash;
-
 char	*ft_extract_line(char **stash)
 {
 	char	*line;
@@ -64,33 +62,35 @@ static int	read_and_fill_stash(int fd, char **stash)
 	return (bytes);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, char **stash)
 {
 	char	*result;
 	int		bytes;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || !stash)
 		return (NULL);
-	if (!g_stash)
-		g_stash = ft_strdup("");
-	bytes = read_and_fill_stash(fd, &g_stash);
+	if (!*stash)
+		*stash = ft_strdup("");
+	bytes = read_and_fill_stash(fd, stash);
 	if (bytes < 0)
 	{
-		free(g_stash);
-		g_stash = NULL;
+		free(*stash);
+		*stash = NULL;
 		return (NULL);
 	}
-	result = ft_extract_line(&g_stash);
-	if (!result && g_stash)
+	result = ft_extract_line(stash);
+	if (!result && *stash)
 	{
-		free(g_stash);
-		g_stash = NULL;
+		free(*stash);
+		*stash = NULL;
 	}
 	return (result);
 }
 
-void	gnl_clear_stash(void)
+void	gnl_clear_stash(char **stash)
 {
-	free(g_stash);
-	g_stash = NULL;
+	if (!stash)
+		return ;
+	free(*stash);
+	*stash = NULL;
 }

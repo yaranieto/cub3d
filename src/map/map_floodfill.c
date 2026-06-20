@@ -12,9 +12,6 @@
 
 #include "cub3d.h"
 
-static size_t	g_h;
-static size_t	g_w;
-
 static void	free_padded(char **pad, size_t n)
 {
 	size_t	i;
@@ -34,6 +31,7 @@ static char	**create_padded(t_map *map, size_t *h, size_t *w)
 {
 	char	**pad;
 	size_t	y;
+	size_t	row_len;
 
 	*h = map->rows + 2;
 	*w = map->cols + 2;
@@ -48,39 +46,45 @@ static char	**create_padded(t_map *map, size_t *h, size_t *w)
 			return (free_padded(pad, y), NULL);
 		ft_memset(pad[y], ' ', *w);
 		if (y > 0 && y < *h - 1)
-			ft_memcpy(pad[y] + 1, map->grid[y - 1], map->cols);
+		{
+			row_len = ft_strlen(map->grid[y - 1]);
+			ft_memset(pad[y] + 1, '1', map->cols);
+			ft_memcpy(pad[y] + 1, map->grid[y - 1], row_len);
+		}
 		y++;
 	}
 	return (pad);
 }
 
-static void	flood(char **pad, size_t y, size_t x)
+static void	flood(char **pad, size_t *dim, size_t y, size_t x)
 {
 	char	c;
 
-	if (y >= g_h || x >= g_w)
+	if (y >= dim[0] || x >= dim[1])
 		return ;
 	c = pad[y][x];
 	if (c != '0' && c != ' ' && c != 'N' && c != 'S' && c != 'E' && c != 'W')
 		return ;
 	pad[y][x] = 'X';
-	flood(pad, y - 1, x);
-	flood(pad, y + 1, x);
-	flood(pad, y, x - 1);
-	flood(pad, y, x + 1);
+	flood(pad, dim, y - 1, x);
+	flood(pad, dim, y + 1, x);
+	flood(pad, dim, y, x - 1);
+	flood(pad, dim, y, x + 1);
 }
 
 static int	map_has_leak(t_map *map, char **pad)
 {
 	size_t	y;
 	size_t	x;
+	size_t	row_len;
 	char	c;
 
 	y = 0;
 	while (y < map->rows)
 	{
+		row_len = ft_strlen(map->grid[y]);
 		x = 0;
-		while (x < map->cols)
+		while (x < row_len)
 		{
 			c = map->grid[y][x];
 			if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
@@ -100,13 +104,14 @@ int	validate_map_closed(t_scene *scene)
 	char	**pad;
 	size_t	h;
 	size_t	w;
+	size_t	dim[2];
 
 	pad = create_padded(&scene->map, &h, &w);
 	if (!pad)
 		return (-1);
-	g_h = h;
-	g_w = w;
-	flood(pad, 0, 0);
+	dim[0] = h;
+	dim[1] = w;
+	flood(pad, dim, 0, 0);
 	if (map_has_leak(&scene->map, pad))
 		return (free_padded(pad, h), -1);
 	free_padded(pad, h);

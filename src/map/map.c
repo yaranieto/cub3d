@@ -52,8 +52,6 @@ static int	append_row(t_map *map, char *line)
 	len = ft_strlen(line);
 	if (len == 0)
 		return (-1);
-	if (map->rows > 0 && len != map->cols)
-		return (-1);
 	new_grid = ft_calloc(map->rows + 1, sizeof(char *));
 	if (!new_grid)
 		return (-1);
@@ -67,7 +65,8 @@ static int	append_row(t_map *map, char *line)
 	free(map->grid);
 	map->grid = new_grid;
 	map->rows++;
-	map->cols = len;
+	if (len > map->cols)
+		map->cols = len;
 	return (0);
 }
 
@@ -101,7 +100,7 @@ void	normalize_player_cells(t_map *map)
 	while (y < map->rows)
 	{
 		x = 0;
-		while (x < map->cols)
+		while (map->grid[y][x])
 		{
 			c = map->grid[y][x];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')

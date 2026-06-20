@@ -122,4 +122,7 @@ valgrind: all
 
 -include $(DEP)
 
-.PHONY: all clean fclean re norm run valgrind
+.PHONY: all clean fclean re norm run valgrind bonus
+
+bonus:
+	@echo "No bonus features implemented yet."
