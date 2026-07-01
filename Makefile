@@ -6,7 +6,7 @@
 #    By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/31 14:50:19 by ynieto-s          #+#    #+#              #
-#    Updated: 2026/06/10 13:16:23 by jnovoa-a         ###   ########.fr        #
+#    Updated: 2026/06/30 20:04:40 by jnovoa-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ endif
 SRC = \
 	main.c \
 	my_mlx.c \
+	render.c \
 	parse/parse.c \
 	parse/parse_line.c \
 	parse/parse_textures.c \
@@ -59,7 +60,14 @@ SRC = \
 	map/map_floodfill.c \
 	utils/utils.c \
 	scene/scene.c \
-	scene/color.c
+	scene/color.c \
+	raycast/raycast.c \
+	raycast/raycast_init.c \
+	raycast/raycast_math.c \
+	raycast/raycast_dda.c \
+	raycast/raycast_distance.c \
+	raycast/raycast_draw.c \
+	textures/textures_load.c
 
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))
 
