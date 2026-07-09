@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 13:48:44 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/05/31 16:19:02 by ynieto-s         ###   ########.fr       */
+/*   Updated: 2026/07/06 11:57:58 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void	set_east(t_player *p)
 
 static void	set_west(t_player *p)
 {
-	p->dir_x = 1.0;
+	p->dir_x = -1.0;
 	p->dir_y = 0.0;
 	p->plane_x = 0.0;
-	p->plane_y = FOV;
+	p->plane_y = -FOV;
 }
 
 void	init_player_dir(t_player *player)

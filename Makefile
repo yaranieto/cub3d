@@ -6,7 +6,7 @@
 #    By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/31 14:50:19 by ynieto-s          #+#    #+#              #
-#    Updated: 2026/06/30 20:04:40 by jnovoa-a         ###   ########.fr        #
+#    Updated: 2026/07/08 18:12:45 by jnovoa-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,12 @@ SRC = \
 	raycast/raycast_dda.c \
 	raycast/raycast_distance.c \
 	raycast/raycast_draw.c \
-	textures/textures_load.c
+	raycast/raycast_texture.c \
+	textures/textures_utils.c \
+	textures/textures_load.c \
+	player/player_move.c \
+	player/player_utils.c \
+	player/player_rotate.c
 
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))
 

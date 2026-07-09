@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 10:23:04 by jnovoa-a          #+#    #+#             */
-/*   Updated: 2026/06/11 13:09:47 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/06 12:35:25 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	graph_init(t_scene *scene)
 		return (-1);
 	if (init_mlx_image(scene) != 0)
 		return (-1);
-	render_frame(scene);
+	/*render_frame(scene);*/
 	init_mlx_hooks(scene);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 16:00:48 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/06/12 12:06:13 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/06 12:36:28 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 		scene_free(&scene);
 		return (print_err("failed to load .cub"), 1);
 	}
+	init_player_dir(&scene.player);
 	if (graph_init(&scene) != 0)
 	{
 		scene_free(&scene);
@@ -65,6 +66,7 @@ int	main(int argc, char **argv)
 		scene_free(&scene);
 		return (print_err("failed to load textures"), 1);
 	}
+	render_frame(&scene);
 	mlx_loop(scene.graph.mlx);
 	scene_free(&scene);
 	return (0);

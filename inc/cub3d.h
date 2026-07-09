@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 15:54:35 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/06/30 20:39:31 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:58:27 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@
 
 #ifndef FOV
 # define FOV 0.66
+#endif
+
+#ifndef MOVE_SPEED
+# define MOVE_SPEED 0.30
+#endif
+
+#ifndef ROT_SPEED
+# define ROT_SPEED 0.05
 #endif
 
 typedef struct s_rgb
@@ -115,6 +123,9 @@ typedef struct s_ray
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+
+	double	wall_x;
+	int		tex_x;
 }	t_ray;
 
 typedef struct s_scene
@@ -175,6 +186,12 @@ void	perform_dda(t_ray *ray, t_scene *scene);
 void	calculate_wall_distance(t_ray *ray, t_scene *scene);
 void	calculate_wall_height(t_ray *ray, t_scene *scene);
 void	draw_wall_column(t_scene *scene, t_ray *ray, int x);
-
+void	calculate_wall_x(t_ray *ray, t_scene *scene);
+void	calculate_tex_x(t_ray *ray, t_scene *scene);
+int		get_texture_pixel(t_tex_img *tex, int x, int y);
+t_tex_img	*get_wall_texture(t_scene *scene, t_ray *ray);
+void	move_forward(t_scene *scene);
+void	rotate_player(t_player *player, double angle);
+void	move_player(t_scene *scene, int keycode);
 
 #endif
