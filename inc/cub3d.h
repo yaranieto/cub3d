@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 15:54:35 by ynieto-s          #+#    #+#             */
-/*   Updated: 2026/07/09 17:58:27 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/10 18:30:22 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@
 # endif
 
 #ifndef FOV
-# define FOV 0.66
+# define FOV 0.06
 #endif
 
 #ifndef MOVE_SPEED
-# define MOVE_SPEED 0.30
+# define MOVE_SPEED 0.03
 #endif
 
 #ifndef ROT_SPEED
-# define ROT_SPEED 0.05
+# define ROT_SPEED 0.001
 #endif
 
 typedef struct s_rgb
@@ -70,7 +70,13 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 	char	spawn_ori;
-}				t_player;
+	int		key_w;
+	int		key_s;
+	int		key_a;
+	int		key_d;
+	int		key_left;
+	int		key_right;
+}	t_player;
 
 typedef struct s_graph
 {
@@ -193,5 +199,7 @@ t_tex_img	*get_wall_texture(t_scene *scene, t_ray *ray);
 void	move_forward(t_scene *scene);
 void	rotate_player(t_player *player, double angle);
 void	move_player(t_scene *scene, int keycode);
+int	handle_keyrelease(int keycode, t_scene *scene);
+int	update_game(t_scene *scene);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 10:23:04 by jnovoa-a          #+#    #+#             */
-/*   Updated: 2026/07/06 12:35:25 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/10 18:00:37 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	init_mlx_image(t_scene *scene)
 static void	init_mlx_hooks(t_scene *scene)
 {
 	mlx_hook(scene->graph.win, 2, 1L << 0, handle_keypress, scene);
+	mlx_hook(scene->graph.win, 3, 1L << 1, handle_keyrelease, scene);
 	mlx_hook(scene->graph.win, 17, 0, handle_close, scene);
 }
 
@@ -55,7 +56,7 @@ int	graph_init(t_scene *scene)
 		return (-1);
 	if (init_mlx_image(scene) != 0)
 		return (-1);
-	/*render_frame(scene);*/
 	init_mlx_hooks(scene);
+	mlx_loop_hook(scene->graph.mlx, update_game, scene);
 	return (0);
 }

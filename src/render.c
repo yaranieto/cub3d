@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 13:10:44 by jnovoa-a          #+#    #+#             */
-/*   Updated: 2026/07/08 18:11:17 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/10 17:55:26 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,6 @@ void	render_frame(t_scene *scene)
 		scene->graph.img,
 		0,
 		0);
-}
-
-int	handle_keypress(int keycode, t_scene *scene)
-{
-	if (keycode == KEY_ESC)
-	{
-		scene_free(scene);
-		exit(0);
-	}
-	move_player(scene, keycode);
-	if (keycode == KEY_LEFT)
-		rotate_player(&scene->player, ROT_SPEED);
-	else if (keycode == KEY_RIGHT)
-		rotate_player(&scene->player, -ROT_SPEED);
-	render_frame(scene);
-	return (0);
 }
 
 int	handle_close(t_scene *scene)

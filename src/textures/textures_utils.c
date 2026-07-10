@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 20:28:48 by jnovoa-a          #+#    #+#             */
-/*   Updated: 2026/07/06 13:20:57 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/10 18:20:33 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,12 @@
 int	get_texture_pixel(t_tex_img *tex, int x, int y)
 {
 	char	*dst;
-
-	printf("pixel (%d,%d)  size=(%d,%d)\n",
-		x, y, tex->width, tex->height);
-
 	if (x < 0 || x >= tex->width)
 	{
-		printf("ERROR TEX_X\n");
 		return (0);
 	}
 	if (y < 0 || y >= tex->height)
 	{
-		printf("ERROR TEX_Y\n");
 		return (0);
 	}
 

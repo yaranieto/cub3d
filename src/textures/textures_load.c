@@ -6,7 +6,7 @@
 /*   By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:06:51 by jnovoa-a          #+#    #+#             */
-/*   Updated: 2026/07/06 12:53:48 by jnovoa-a         ###   ########.fr       */
+/*   Updated: 2026/07/10 18:20:43 by jnovoa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,10 @@
 static	int	load_one_texture(void *mlx, char *path, t_tex_img *tex)
 {
 	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
-	printf("Cargando %s\n", path);
-	printf("img=%p width=%d height=%d\n",
-		tex->img,
-		tex->width,
-		tex->height);
 	if (!tex->img)
 		return (-1);
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
 			&tex->line_len, &tex->endian);
-	printf("addr=%p bpp=%d line=%d\n",
-		(void *)tex->addr,
-		tex->bpp,
-		tex->line_len);
-	printf("addr=%p\n", tex->addr);
 	return (0);
 }
 
@@ -48,28 +38,23 @@ void	free_textures(t_scene *scene)
 
 int	load_textures(t_scene *scene)
 {
-	printf("LOAD_TEXTURES\n");
 	void	*mlx;
 
 	mlx = scene->graph.mlx;
 	if (load_one_texture(mlx, scene->tex.north, &scene->textures[0]))
 	{
-		printf("Error NO\n");
 		return (-1);
 	}
 	if (load_one_texture(mlx, scene->tex.south, &scene->textures[1]))
 	{
-		printf("Error SO\n");
 		return (-1);
 	}
 	if (load_one_texture(mlx, scene->tex.east, &scene->textures[2]))
 	{
-		printf("Error EA\n");
 		return (-1);
 	}
 	if (load_one_texture(mlx, scene->tex.west, &scene->textures[3]))
 	{
-		printf("Error WE\n");
 		return (-1);
 	}
 	return (0);
