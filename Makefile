@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ynieto-s <ynieto-s@student.42.fr>          +#+  +:+       +#+         #
+#    By: jnovoa-a <jnovoa-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/31 14:50:19 by ynieto-s          #+#    #+#              #
-#    Updated: 2026/05/31 16:18:14 by ynieto-s         ###   ########.fr        #
+#    Updated: 2026/07/10 18:02:08 by jnovoa-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ endif
 
 SRC = \
 	main.c \
+	my_mlx.c \
+	render.c \
 	parse/parse.c \
 	parse/parse_line.c \
 	parse/parse_textures.c \
@@ -58,7 +60,21 @@ SRC = \
 	map/map_floodfill.c \
 	utils/utils.c \
 	scene/scene.c \
-	scene/color.c
+	scene/color.c \
+	raycast/raycast.c \
+	raycast/raycast_init.c \
+	raycast/raycast_math.c \
+	raycast/raycast_dda.c \
+	raycast/raycast_distance.c \
+	raycast/raycast_draw.c \
+	raycast/raycast_texture.c \
+	textures/textures_utils.c \
+	textures/textures_load.c \
+	player/player_move.c \
+	player/player_utils.c \
+	player/player_input.c \
+	player/player_update.c \
+	player/player_rotate.c
 
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))
 
